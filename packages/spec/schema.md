@@ -148,7 +148,7 @@ These are the libraries that have already implemented the Standard Schema interf
 | [validate.js](https://github.com/jakelazaroff/validate.js)                         | v0.1.0+    | from the start                                                                                             |
 | [@chrock-studio/overload](https://jsr.io/@chrock-studio/overload)                  | v0.2.0+    | [Commit](https://github.com/chrock-studio/toolbox/commit/0ca93098d666c19f2728761deefc68b995ede4dc)         |
 | [ovr Schema](https://ovrjs.com/07-schema)                                          | v6.2.0+    | [PR](https://github.com/ovrjs/ovr/pull/47)                                                                 |
-| [@cleverbrush/schema](https://docs.cleverbrush.com/schema)                         | v2.0.0+    | [Commit](https://github.com/cleverbrush/framework/commit/d65d3af4326f32de7a5defc307a0e40d5562e63e)         |
+| [@cleverbrush/schema](https://schema.cleverbrush.com/)                         | v2.0.0+    | [Commit](https://github.com/cleverbrush/framework/commit/d65d3af4326f32de7a5defc307a0e40d5562e63e)         |
 | [Raptor (Validator)](https://raptorjs.com)                                         | v0.9.0+    | [PR](https://github.com/raptor-js/validator/releases/tag/0.9.0)                                            |
 | [Mongoose](https://github.com/Automattic/mongoose)                                 | v9.7.0+    | [PR](https://github.com/Automattic/mongoose/pull/16308)                                                    |
 | [snap-validate](https://github.com/aniru-dh21/snap-validate)                       | v0.4.4+    | [Commit](https://github.com/aniru-dh21/snap-validate/commit/de15fee955799e7b0aeb25d62710826d1643ceb7)      |
