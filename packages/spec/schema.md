@@ -146,6 +146,7 @@ These are the libraries that have already implemented the Standard Schema interf
 | [Paseri](https://paseri.dev)                                                       | v0.2.1+    | [Commit](https://github.com/vbudovski/paseri/commit/fa08ee01947de7d6b229d9a7ac21b66164f682d4)              |
 | [VineJS](https://github.com/vinejs/vine)                                           | v4.0.0+    | [Commit](https://github.com/vinejs/vine/commit/768beed3a6b0230b1fb1f340615c8b880c98515a)                   |
 | [validate.js](https://github.com/jakelazaroff/validate.js)                         | v0.1.0+    | from the start                                                                                             |
+| [Lex SDK](https://github.com/bluesky-social/atproto/tree/main/packages/lex/lex)    | v0.0.21+   | [PR](https://github.com/bluesky-social/atproto/pull/4734)                                                  |
 | [@chrock-studio/overload](https://jsr.io/@chrock-studio/overload)                  | v0.2.0+    | [Commit](https://github.com/chrock-studio/toolbox/commit/0ca93098d666c19f2728761deefc68b995ede4dc)         |
 | [ovr Schema](https://ovrjs.com/07-schema)                                          | v6.2.0+    | [PR](https://github.com/ovrjs/ovr/pull/47)                                                                 |
 | [@cleverbrush/schema](https://schema.cleverbrush.com/)                         | v2.0.0+    | [Commit](https://github.com/cleverbrush/framework/commit/d65d3af4326f32de7a5defc307a0e40d5562e63e)         |
