@@ -9,6 +9,7 @@ import { parseSync } from "../parse/parse.ts";
  * @param data The data to check.
  *
  * @throws {SchemaError} If the data does not match the schema.
+ * @throws {TypeError} If the schema validation is asynchronous.
  */
 export function assert<TSchema extends StandardSchemaV1>(
   schema: TSchema,

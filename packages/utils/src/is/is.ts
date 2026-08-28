@@ -9,6 +9,8 @@ import { safeParseSync } from "../safeParse/safeParse.ts";
  * @param input The input to check.
  *
  * @returns Whether the input matches the schema.
+ *
+ * @throws {TypeError} If the schema validation is asynchronous.
  */
 export function is<TSchema extends StandardSchemaV1>(
   schema: TSchema,
