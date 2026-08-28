@@ -1,4 +1,5 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
+import { _isThenable } from "../_isThenable/index.ts";
 import type { LooseAutocomplete } from "../_types/index.ts";
 
 /**
@@ -34,7 +35,7 @@ export function safeParseSync<TSchema extends StandardSchemaV1>(
   data: LooseAutocomplete<StandardSchemaV1.InferInput<TSchema>>,
 ): StandardSchemaV1.Result<StandardSchemaV1.InferOutput<TSchema>> {
   const result = schema["~standard"].validate(data);
-  if (result instanceof Promise) {
+  if (_isThenable(result)) {
     throw new TypeError("Schema validation must be synchronous");
   }
   return result;
