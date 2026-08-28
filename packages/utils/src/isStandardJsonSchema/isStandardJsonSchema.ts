@@ -20,6 +20,7 @@ export function isStandardJsonSchema(
     typeof standardProps === "object" &&
     standardProps != null &&
     typeof standardProps.jsonSchema === "object" &&
+    standardProps.jsonSchema != null &&
     typeof standardProps.jsonSchema.input === "function" &&
     typeof standardProps.jsonSchema.output === "function" &&
     typeof standardProps.version === "number" &&
