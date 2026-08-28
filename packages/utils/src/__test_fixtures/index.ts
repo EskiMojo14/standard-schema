@@ -1,4 +1,5 @@
 import type {
+  StandardCodecV1,
   StandardJSONSchemaV1,
   StandardSchemaV1,
 } from "@standard-schema/spec";
@@ -13,6 +14,29 @@ export const stringSchema: StandardSchemaV1<string> = {
         ? { value }
         : {
             issues: [{ message: `Expected string, got ${typeof value}` }],
+          };
+    },
+  },
+};
+
+export const stringToBigIntCodec: StandardCodecV1<string, bigint> = {
+  "~standard": {
+    version: 1,
+    vendor: "custom",
+    validate: (value) => {
+      const pass = typeof value === "string";
+      return pass
+        ? { value: BigInt(value) }
+        : {
+            issues: [{ message: `Expected string, got ${typeof value}` }],
+          };
+    },
+    encode: (value) => {
+      const pass = typeof value === "bigint";
+      return pass
+        ? { value: value.toString() }
+        : {
+            issues: [{ message: `Expected bigint, got ${typeof value}` }],
           };
     },
   },
