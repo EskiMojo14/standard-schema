@@ -1,4 +1,5 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
+import { _nullProto } from "../_nullProto/index.ts";
 import type { SchemaArgs } from "../_removeSchemaArg/_removeSchemaArg.ts";
 import { _removeSchemaArg } from "../_removeSchemaArg/_removeSchemaArg.ts";
 import type { IssueMapper } from "../flattenIssues/flattenIssues.ts";
@@ -74,8 +75,9 @@ export function formatIssues(
 ): FormattedIssues<unknown, unknown> {
   const [issues, mapIssue = (issue: StandardSchemaV1.Issue) => issue.message] =
     _removeSchemaArg(args);
-  const fieldIssues = Object.create(null) as FormattedIssues<unknown, unknown>;
-  fieldIssues._issues = [];
+  const fieldIssues = _nullProto<FormattedIssues<unknown, unknown>>({
+    _issues: [],
+  });
   for (const issue of issues) {
     if (!issue.path?.length) {
       (fieldIssues._issues as unknown[]).push(mapIssue(issue));

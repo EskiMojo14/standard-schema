@@ -1,13 +1,14 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 import { describe, expect, test } from "vitest";
 import { fieldsSchema } from "../__test_fixtures/index.ts";
+import { _nullProto } from "../_nullProto/index.ts";
 import { flattenIssues } from "./flattenIssues.ts";
 
 describe("flattenIssues", () => {
   test("should return empty object if no issues are passed", () => {
     const expected = {
       formIssues: [],
-      fieldIssues: {},
+      fieldIssues: _nullProto({}),
     };
     expect(flattenIssues([])).toStrictEqual(expected);
 
@@ -21,7 +22,7 @@ describe("flattenIssues", () => {
     ];
     const expected = {
       formIssues: ["Error message 1", "Error message 2"],
-      fieldIssues: {},
+      fieldIssues: _nullProto({}),
     };
     expect(flattenIssues(issues)).toStrictEqual(expected);
 
@@ -35,10 +36,10 @@ describe("flattenIssues", () => {
     ];
     const expected = {
       formIssues: [],
-      fieldIssues: {
+      fieldIssues: _nullProto({
         foo: ["Error message 1"],
         bar: ["Error message 2"],
-      },
+      }),
     };
     expect(flattenIssues(issues)).toStrictEqual(expected);
 
@@ -50,9 +51,9 @@ describe("flattenIssues", () => {
 
     const expected = {
       formIssues: [issues[1]],
-      fieldIssues: {
+      fieldIssues: _nullProto({
         foo: [issues[0]],
-      },
+      }),
     };
 
     expect(flattenIssues(issues, mapper)).toStrictEqual(expected);
