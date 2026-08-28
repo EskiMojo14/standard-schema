@@ -68,7 +68,7 @@ export function flattenIssues(
   const [issues, mapIssue = (issue: StandardSchemaV1.Issue) => issue.message] =
     _removeSchemaArg(args);
   const formIssues: unknown[] = [];
-  const fieldIssues: Record<PropertyKey, unknown[]> = {};
+  const fieldIssues: Record<PropertyKey, unknown[]> = Object.create(null);
 
   for (const issue of issues) {
     if (issue.path?.length) {

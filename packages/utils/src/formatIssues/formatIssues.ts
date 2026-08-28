@@ -74,9 +74,8 @@ export function formatIssues(
 ): FormattedIssues<unknown, unknown> {
   const [issues, mapIssue = (issue: StandardSchemaV1.Issue) => issue.message] =
     _removeSchemaArg(args);
-  const fieldIssues: FormattedIssues<unknown, unknown> = {
-    _issues: [],
-  };
+  const fieldIssues = Object.create(null) as FormattedIssues<unknown, unknown>;
+  fieldIssues._issues = [];
   for (const issue of issues) {
     if (!issue.path?.length) {
       (fieldIssues._issues as unknown[]).push(mapIssue(issue));
