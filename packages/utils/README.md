@@ -82,7 +82,7 @@ import { SchemaError } from "@standard-schema/utils";
 // same functionality as `parse`
 async function validateInput<TSchema extends StandardSchemaV1>(
   schema: TSchema,
-  data: unknown
+  data: unknown,
 ): Promise<StandardSchemaV1.InferOutput<TSchema>> {
   const result = await schema["~standard"].validate(data);
   if (result.issues) {
@@ -102,7 +102,7 @@ import { summarize, safeParse } from "@standard-schema/utils";
 
 async function tryParse<TSchema extends StandardSchemaV1>(
   schema: TSchema,
-  data: unknown
+  data: unknown,
 ): Promise<StandardSchemaV1.Result<StandardSchemaV1.InferOutput<TSchema>>> {
   const result = await safeParse(schema, data);
   if (result.issues) {
@@ -387,7 +387,7 @@ interface Parser<Output> {
 
 async function parseString(
   schema: Parser<string> | StandardSchemaV1<string>,
-  data: unknown
+  data: unknown,
 ) {
   if (isStandardSchema(schema)) {
     return parse(schema, data);
@@ -405,7 +405,7 @@ import { isStandardSchema } from "@standard-schema/utils";
 
 async function parseString(
   schema: StandardSchemaV1<string> | StandardSchemaV2<string>,
-  data: unknown
+  data: unknown,
 ) {
   if (isStandardSchema(schema, 1)) {
     // handle v1
@@ -439,7 +439,7 @@ import { flattenIssues, safeParse } from "@standard-schema/utils";
 
 async function getFormErrors(schema: StandardSchemaV1, data: unknown) {
   const result = await safeParse(schema, data);
-  const { formIssues, fieldIssues } = flattenIssues(result.issues);
+  const { formIssues, fieldIssues } = flattenIssues(result.issues ?? []);
   return { formIssues, fieldIssues };
 }
 ```
@@ -453,8 +453,8 @@ import { flattenIssues, safeParse } from "@standard-schema/utils";
 async function getFormErrors(schema: StandardSchemaV1, data: unknown) {
   const result = await safeParse(schema, data);
   const { formIssues, fieldIssues } = flattenIssues(
-    result.issues,
-    (issue) => issue.message
+    result.issues ?? [],
+    (issue) => issue.message,
   );
   return { formIssues, fieldIssues };
 }
@@ -468,10 +468,13 @@ import { flattenIssues, safeParse } from "@standard-schema/utils";
 
 async function getFormErrors<Schema extends StandardSchemaV1>(
   schema: Schema,
-  data: unknown
+  data: unknown,
 ) {
   const result = await safeParse(schema, data);
-  const { formIssues, fieldIssues } = flattenIssues(schema, result.issues);
+  const { formIssues, fieldIssues } = flattenIssues(
+    schema,
+    result.issues ?? [],
+  );
   return { formIssues, fieldIssues };
 }
 ```
@@ -486,7 +489,7 @@ import { formatIssues, safeParse } from "@standard-schema/utils";
 
 async function getFormErrors(schema: StandardSchemaV1, data: unknown) {
   const result = await safeParse(schema, data);
-  const fieldIssues = formatIssues(result.issues);
+  const fieldIssues = formatIssues(result.issues ?? []);
   return fieldIssues;
 }
 ```
@@ -499,7 +502,10 @@ import { formatIssues, safeParse } from "@standard-schema/utils";
 
 async function getFormErrors(schema: StandardSchemaV1, data: unknown) {
   const result = await safeParse(schema, data);
-  const fieldIssues = formatIssues(result.issues, (issue) => issue.message);
+  const fieldIssues = formatIssues(
+    result.issues ?? [],
+    (issue) => issue.message,
+  );
   return fieldIssues;
 }
 ```
@@ -512,10 +518,10 @@ import { formatIssues, safeParse } from "@standard-schema/utils";
 
 async function getFormErrors<Schema extends StandardSchemaV1>(
   schema: Schema,
-  data: unknown
+  data: unknown,
 ) {
   const result = await safeParse(schema, data);
-  const fieldIssues = formatIssues(schema, result.issues);
+  const fieldIssues = formatIssues(schema, result.issues ?? []);
   return fieldIssues;
 }
 ```
@@ -583,6 +589,6 @@ interface Config {
 
 // if we have a schema, use that for types, otherwise use our defaults
 type MyCustomFunction<CustomConfig extends Config> = (
-  input: InferInputWithDefault<CustomConfig["schema"], string>
+  input: InferInputWithDefault<CustomConfig["schema"], string>,
 ) => InferOutputWithDefault<CustomConfig["schema"], string>;
 ```
