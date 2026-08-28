@@ -1,4 +1,6 @@
 export * from "./assert/index.ts";
+export * from "./decode/index.ts";
+export * from "./encode/index.ts";
 export * from "./flattenIssues/index.ts";
 export * from "./formatIssues/index.ts";
 export * from "./getDotPath/index.ts";
@@ -11,6 +13,8 @@ export * from "./parse/index.ts";
 export * from "./parseDictionary/index.ts";
 export * from "./parseTuple/index.ts";
 export * from "./SchemaError/index.ts";
+export * from "./safeDecode/index.ts";
+export * from "./safeEncode/index.ts";
 export * from "./safeParse/index.ts";
 export * from "./safeParseDictionary/index.ts";
 export * from "./safeParseTuple/index.ts";

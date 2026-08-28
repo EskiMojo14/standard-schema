@@ -42,6 +42,29 @@ export const stringToBigIntCodec: StandardCodecV1<string, bigint> = {
   },
 };
 
+export const asyncStringToBigIntCodec: StandardCodecV1<string, bigint> = {
+  "~standard": {
+    version: 1,
+    vendor: "custom",
+    validate: async (value) => {
+      const pass = typeof value === "string";
+      return pass
+        ? { value: BigInt(value) }
+        : {
+            issues: [{ message: `Expected string, got ${typeof value}` }],
+          };
+    },
+    encode: async (value) => {
+      const pass = typeof value === "bigint";
+      return pass
+        ? { value: value.toString() }
+        : {
+            issues: [{ message: `Expected bigint, got ${typeof value}` }],
+          };
+    },
+  },
+};
+
 export const stringJsonSchema: StandardJSONSchemaV1<string> = {
   "~standard": {
     version: 1,
